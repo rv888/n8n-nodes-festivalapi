@@ -24,7 +24,7 @@
   },
   "main": "index.js",
   "scripts": {
-    "build": "tsc && cp nodes/FestivalAPI/festival.svg dist/nodes/FestivalAPI/festival.svg",
+    "build": "tsc && cp nodes/FestivalAPI/festival.svg dist/nodes/FestivalAPI/festival.svg && cp nodes/FestivalAPI/festival_dark.svg dist/nodes/FestivalAPI/festival_dark.svg",
     "prepublishOnly": "npm run build"
   },
   "files": [
@@ -33,7 +33,7 @@
   "n8n": {
     "n8nNodesApiVersion": 1,
     "nodes": [
-      "dist/nodes/FestivalAPI/FestivalAPI.node.js"
+      "dist/nodes/FestivalAPI/FestivalApi.node.js"
     ],
     "credentials": [
       "dist/credentials/FestivalApiApi.credentials.js"

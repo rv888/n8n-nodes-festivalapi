@@ -15,7 +15,7 @@ export class FestivalAPI implements INodeType {
   description: INodeTypeDescription = {
     displayName: 'Festival API',
     name: 'festivalApi',
-    icon: { light: 'file:festival.svg', dark: 'file:festival.svg' },
+    icon: { light: 'file:festival.svg', dark: 'file:festival_dark.svg' },
     group: ['transform'],
     version: 1,
     subtitle: '={{$parameter["operation"]}}',
@@ -38,7 +38,6 @@ export class FestivalAPI implements INodeType {
         ],
         default: 'festival',
         required: true,
-        description: 'What resource to operate on',
       },
       {
         displayName: 'Operation',
@@ -54,7 +53,6 @@ export class FestivalAPI implements INodeType {
         ],
         default: 'searchFestivals',
         required: true,
-        description: 'What festival operation to perform',
       },
       {
         displayName: 'Operation',
@@ -68,7 +66,6 @@ export class FestivalAPI implements INodeType {
         ],
         default: 'listCountries',
         required: true,
-        description: 'What reference data operation to perform',
       },
       {
         displayName: 'Festival ID',
