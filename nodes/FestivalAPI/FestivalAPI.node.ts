@@ -14,8 +14,8 @@ const BASE_URL = 'https://festivalapi.com/v1';
 export class FestivalAPI implements INodeType {
   description: INodeTypeDescription = {
     displayName: 'Festival API',
-    name: 'festivalAPI',
-    icon: 'file:festival.svg',
+    name: 'festivalApi',
+    icon: { light: 'file:festival.svg', dark: 'file:festival.svg' },
     group: ['transform'],
     version: 1,
     subtitle: '={{$parameter["operation"]}}',
@@ -28,21 +28,47 @@ export class FestivalAPI implements INodeType {
     credentials: [{ name: 'festivalApiApi', required: true }],
     properties: [
       {
+        displayName: 'Resource',
+        name: 'resource',
+        type: 'options',
+        noDataExpression: true,
+        options: [
+          { name: 'Festival', value: 'festival' },
+          { name: 'Reference Data', value: 'referenceData' },
+        ],
+        default: 'festival',
+        required: true,
+        description: 'What resource to operate on',
+      },
+      {
         displayName: 'Operation',
         name: 'operation',
         type: 'options',
         noDataExpression: true,
+        displayOptions: { show: { resource: ['festival'] } },
         options: [
           { name: 'Get Festival Detail', value: 'getFestival', action: 'Get festival detail', description: 'Full festival detail with deadlines, fees, categories, and submission URL' },
           { name: 'Get Festival Roster', value: 'getRoster', action: 'Get festival roster', description: 'Films previously screened at this festival' },
           { name: 'Get Top Scored Festivals', value: 'getScored', action: 'Get top scored festivals', description: 'Festivals ranked by Festival Score (0-100)' },
-          { name: 'List Categories', value: 'listCategories', action: 'List categories', description: 'All available festival categories' },
-          { name: 'List Countries', value: 'listCountries', action: 'List countries', description: 'All available countries with festival counts' },
           { name: 'Search Festivals', value: 'searchFestivals', action: 'Search festivals', description: 'Find festivals by name, category, country, deadline, fee, and more' },
         ],
         default: 'searchFestivals',
         required: true,
-        description: 'What festival data to retrieve',
+        description: 'What festival operation to perform',
+      },
+      {
+        displayName: 'Operation',
+        name: 'operation',
+        type: 'options',
+        noDataExpression: true,
+        displayOptions: { show: { resource: ['referenceData'] } },
+        options: [
+          { name: 'List Categories', value: 'listCategories', action: 'List categories', description: 'All available festival categories' },
+          { name: 'List Countries', value: 'listCountries', action: 'List countries', description: 'All available countries with festival counts' },
+        ],
+        default: 'listCountries',
+        required: true,
+        description: 'What reference data operation to perform',
       },
       {
         displayName: 'Festival ID',
@@ -51,7 +77,7 @@ export class FestivalAPI implements INodeType {
         default: 1,
         required: true,
         displayOptions: {
-          show: { operation: ['getFestival', 'getRoster'] },
+          show: { resource: ['festival'], operation: ['getFestival', 'getRoster'] },
         },
         description: 'Festival ID (find IDs with the Search Festivals operation)',
       },
@@ -61,7 +87,7 @@ export class FestivalAPI implements INodeType {
         type: 'string',
         default: '',
         placeholder: 'Sundance',
-        displayOptions: { show: { operation: ['searchFestivals'] } },
+        displayOptions: { show: { resource: ['festival'], operation: ['searchFestivals'] } },
         description: 'Search festivals by name (case-insensitive). Leave empty to list all.',
       },
       {
@@ -70,7 +96,7 @@ export class FestivalAPI implements INodeType {
         type: 'string',
         default: '',
         placeholder: 'short_film',
-        displayOptions: { show: { operation: ['searchFestivals'] } },
+        displayOptions: { show: { resource: ['festival'], operation: ['searchFestivals'] } },
         description: 'Filter by category (e.g. short_film, feature, documentary, animation, horror, sci_fi)',
       },
       {
@@ -79,7 +105,7 @@ export class FestivalAPI implements INodeType {
         type: 'string',
         default: '',
         placeholder: 'United States',
-        displayOptions: { show: { operation: ['searchFestivals'] } },
+        displayOptions: { show: { resource: ['festival'], operation: ['searchFestivals'] } },
         description: 'Filter by country name or code (e.g. United States, US, Canada, CA)',
       },
       {
@@ -88,7 +114,7 @@ export class FestivalAPI implements INodeType {
         type: 'string',
         default: '',
         placeholder: 'California',
-        displayOptions: { show: { operation: ['searchFestivals'] } },
+        displayOptions: { show: { resource: ['festival'], operation: ['searchFestivals'] } },
         description: 'Filter by state or province (e.g. California, Ontario)',
       },
       {
@@ -97,7 +123,7 @@ export class FestivalAPI implements INodeType {
         type: 'string',
         default: '',
         placeholder: 'drama',
-        displayOptions: { show: { operation: ['searchFestivals'] } },
+        displayOptions: { show: { resource: ['festival'], operation: ['searchFestivals'] } },
         description: 'Filter by accepted genre (e.g. drama, comedy, experimental)',
       },
       {
@@ -106,7 +132,7 @@ export class FestivalAPI implements INodeType {
         type: 'string',
         default: '',
         placeholder: 'filmfreeway',
-        displayOptions: { show: { operation: ['searchFestivals'] } },
+        displayOptions: { show: { resource: ['festival'], operation: ['searchFestivals'] } },
         description: 'Filter by submission platform (e.g. filmfreeway, withoutabox)',
       },
       {
@@ -114,7 +140,7 @@ export class FestivalAPI implements INodeType {
         name: 'feeMax',
         type: 'number',
         default: 0,
-        displayOptions: { show: { operation: ['searchFestivals'] } },
+        displayOptions: { show: { resource: ['festival'], operation: ['searchFestivals'] } },
         description: 'Maximum submission fee in USD. Set to 0 for no limit.',
       },
       {
@@ -122,7 +148,7 @@ export class FestivalAPI implements INodeType {
         name: 'deadlineAfter',
         type: 'dateTime',
         default: '',
-        displayOptions: { show: { operation: ['searchFestivals'] } },
+        displayOptions: { show: { resource: ['festival'], operation: ['searchFestivals'] } },
         description: 'Filter by submission deadline on or after this date',
       },
       {
@@ -130,7 +156,7 @@ export class FestivalAPI implements INodeType {
         name: 'deadlineBefore',
         type: 'dateTime',
         default: '',
-        displayOptions: { show: { operation: ['searchFestivals'] } },
+        displayOptions: { show: { resource: ['festival'], operation: ['searchFestivals'] } },
         description: 'Filter by submission deadline before this date',
       },
       {
@@ -139,7 +165,7 @@ export class FestivalAPI implements INodeType {
         type: 'number',
         default: 50,
         typeOptions: { minValue: 1, maxValue: 200 },
-        displayOptions: { show: { operation: ['searchFestivals', 'getRoster', 'getScored'] } },
+        displayOptions: { show: { resource: ['festival'], operation: ['searchFestivals', 'getRoster', 'getScored'] } },
         description: 'Max number of results to return',
       },
       {
@@ -148,7 +174,7 @@ export class FestivalAPI implements INodeType {
         type: 'number',
         default: 1,
         typeOptions: { minValue: 1 },
-        displayOptions: { show: { operation: ['getRoster', 'getScored'] } },
+        displayOptions: { show: { resource: ['festival'], operation: ['getRoster', 'getScored'] } },
         description: 'Page number for paginated results',
       },
     ],
@@ -159,28 +185,30 @@ export class FestivalAPI implements INodeType {
 		const returnData: INodeExecutionData[] = [];
 
 		for (let i = 0; i < items.length; i++) {
+			const resource = this.getNodeParameter('resource', i) as string;
 			const operation = this.getNodeParameter('operation', i) as string;
 			try {
 				let url: string;
-				switch (operation) {
-					case 'getFestival':
+				const opKey = `${resource}.${operation}`;
+				switch (opKey) {
+					case 'festival.getFestival':
 						url = `${BASE_URL}/festivals/${this.getNodeParameter('festivalId', i)}/`; break;
-					case 'getRoster': {
+					case 'festival.getRoster': {
 						const fid = this.getNodeParameter('festivalId', i) as number;
 						const page = this.getNodeParameter('page', i, 1) as number;
 						const limit = this.getNodeParameter('limit', i, 50) as number;
 						url = `${BASE_URL}/festivals/${fid}/roster/?page=${page}&per_page=${limit}`; break;
 					}
-					case 'getScored': {
+					case 'festival.getScored': {
 						const sPage = this.getNodeParameter('page', i, 1) as number;
 						const sLimit = this.getNodeParameter('limit', i, 50) as number;
 						url = `${BASE_URL}/festivals/scored/?page=${sPage}&per_page=${sLimit}`; break;
 					}
-					case 'listCategories':
+					case 'referenceData.listCategories':
 						url = `${BASE_URL}/categories/`; break;
-					case 'listCountries':
+					case 'referenceData.listCountries':
 						url = `${BASE_URL}/countries/`; break;
-					case 'searchFestivals': {
+					case 'festival.searchFestivals': {
 						const p = new URLSearchParams();
 						const q = this.getNodeParameter('search', i, '') as string;
 						const cat = this.getNodeParameter('category', i, '') as string;
@@ -206,7 +234,7 @@ export class FestivalAPI implements INodeType {
 						break;
 					}
 					default:
-						throw new NodeOperationError(this.getNode(), `Unknown operation: ${operation}`);
+						throw new NodeOperationError(this.getNode(), `Unknown ${resource} operation: ${operation}`);
 				}
 
 				const response = await this.helpers.httpRequestWithAuthentication.call(
