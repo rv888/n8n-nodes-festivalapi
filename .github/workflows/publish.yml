@@ -20,4 +20,6 @@ jobs:
       - run: npm install --legacy-peer-deps --ignore-scripts --no-optional
       - run: npm run build
       - name: Publish with provenance
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: npm publish --provenance --access public
