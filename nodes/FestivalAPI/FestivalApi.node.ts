@@ -15,7 +15,7 @@ export class FestivalApi implements INodeType {
   description: INodeTypeDescription = {
     displayName: 'Festival API',
     name: 'festivalApi',
-    icon: { light: 'file:festival.svg', dark: 'file:festival_dark.svg' },
+    icon: { light: 'file:festival.png', dark: 'file:festival_dark.png' },
     group: ['transform'],
     version: 1,
     subtitle: '={{$parameter["operation"]}}',
