@@ -1,6 +1,6 @@
 {
   "name": "n8n-nodes-festivalapi",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "homepage": "https://github.com/rv888/n8n-nodes-festivalapi#readme",
   "description": "Festival API for n8n — search 12,000+ film festivals worldwide, filter by deadline, category, country, fee, and festival score",
   "keywords": [

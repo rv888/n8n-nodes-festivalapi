@@ -11,7 +11,7 @@ import {
 
 const BASE_URL = 'https://festivalapi.com/v1';
 
-export class FestivalAPI implements INodeType {
+export class FestivalApi implements INodeType {
   description: INodeTypeDescription = {
     displayName: 'Festival API',
     name: 'festivalApi',
