@@ -1,0 +1,51 @@
+{
+  "name": "n8n-nodes-festivalapi",
+  "version": "1.0.0",
+  "homepage": "https://github.com/rv888/n8n-nodes-festivalapi#readme",
+  "description": "Festival API for n8n — search 12,000+ film festivals worldwide, filter by deadline, category, country, fee, and festival score",
+  "keywords": [
+    "n8n-community-node-package",
+    "n8n",
+    "film festival",
+    "festival",
+    "filmmaker",
+    "submissions",
+    "deadline"
+  ],
+  "license": "MIT",
+  "author": {
+    "name": "Festival API",
+    "email": "ryanv@versusmedia.com",
+    "url": "https://festivalapi.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rv888/n8n-nodes-festivalapi.git"
+  },
+  "main": "index.js",
+  "scripts": {
+    "build": "tsc && cp nodes/FestivalAPI/festival.svg dist/nodes/FestivalAPI/festival.svg",
+    "prepublishOnly": "npm run build"
+  },
+  "files": [
+    "dist/"
+  ],
+  "n8n": {
+    "n8nNodesApiVersion": 1,
+    "nodes": [
+      "dist/nodes/FestivalAPI/FestivalAPI.node.js"
+    ],
+    "credentials": [
+      "dist/credentials/FestivalApiApi.credentials.js"
+    ]
+  },
+  "peerDependencies": {
+    "n8n-workflow": "*"
+  },
+  "devDependencies": {
+    "n8n-workflow": "latest",
+    "typescript": "^5.5.0",
+    "@types/node": "^20.0.0",
+    "@types/express": "^4.17.21"
+  }
+}
