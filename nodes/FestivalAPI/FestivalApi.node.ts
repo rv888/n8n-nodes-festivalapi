@@ -20,7 +20,7 @@ export class FestivalApi implements INodeType {
     version: 1,
     subtitle: '={{$parameter["operation"]}}',
     description:
-      'Search 12,000+ film festivals worldwide — filter by deadline, category, country, fee, and festival score',
+      'Search 14,000+ film festivals worldwide — filter by deadline, category, country, fee, and festival score',
     defaults: { name: 'Festival API' },
     usableAsTool: true,
     inputs: [NodeConnectionTypes.Main],

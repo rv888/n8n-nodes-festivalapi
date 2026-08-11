@@ -2,7 +2,7 @@
 
 This is an [n8n](https://n8n.io) community node for [Festival API](https://festivalapi.com).
 
-Search 12,000+ film festivals worldwide — filter by deadline, category, country, fee, and festival score.
+Search 14,000+ film festivals worldwide — filter by deadline, category, country, fee, and festival score.
 
 ## Installation
 
