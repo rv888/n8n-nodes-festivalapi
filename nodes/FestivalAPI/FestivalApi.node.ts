@@ -46,7 +46,7 @@ export class FestivalApi implements INodeType {
         noDataExpression: true,
         displayOptions: { show: { resource: ['festival'] } },
         options: [
-          { name: 'Get Festival Detail', value: 'getFestival', action: 'Get festival detail', description: 'Full festival detail with deadlines, fees, categories, and submission URL' },
+          { name: 'Get Festival Detail', value: 'getFestival', action: 'Get festival detail', description: 'Full festival detail with the primary deadline, standard fee, categories, and submission URL' },
           { name: 'Get Festival Roster', value: 'getRoster', action: 'Get festival roster', description: 'Films previously screened at this festival' },
           { name: 'Get Top Scored Festivals', value: 'getScored', action: 'Get top scored festivals', description: 'Festivals ranked by Festival Score (0-100)' },
           { name: 'Search Festivals', value: 'searchFestivals', action: 'Search festivals', description: 'Find festivals by name, category, country, deadline, fee, and more' },

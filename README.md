@@ -23,7 +23,7 @@ Then enable community nodes in your n8n admin panel settings.
 | Operation | Description |
 |-----------|-------------|
 | **Search Festivals** | Find festivals by name, category, country, state, deadline, fee, platform, or genre |
-| **Get Festival Detail** | Full festival info: deadlines, fees, categories, submission URL, score |
+| **Get Festival Detail** | Full festival info: primary deadline, standard fee, categories, submission URL, score |
 | **Get Festival Roster** | Films previously screened at a festival with awards |
 | **Get Top Scored Festivals** | Festivals ranked by Festival Score (0-100) |
 | **List Categories** | All available festival categories |
